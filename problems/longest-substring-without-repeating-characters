@@ -1,0 +1,19 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if len(s) == 0:
+            return 0
+        
+        maxlen = 0
+        for i in range (0,len(s)):
+            uniqueChr = set()
+            len_substr = 0
+            for ii in range (i,len(s)):
+                if s[ii] in uniqueChr:
+                    maxlen = (len_substr if (len_substr > maxlen) else maxlen)
+                    break
+                else:
+                    
+                    uniqueChr.add(s[ii])
+                    len_substr = len_substr + 1
+            maxlen = (len_substr if (len_substr > maxlen) else maxlen)
+        return maxlen
