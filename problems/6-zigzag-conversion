@@ -30,12 +30,13 @@ class Solution:
             dat[i].append(s[ch])
             ch = ch + 1
 
-            if i == numRows - 1:
+            if i == numRows - 1 and i != 0:
                 stepVal = -1
-            if i == 0:
+            if i == 0 and i != numRows - 1:
                 stepVal = 1
         final = ""
         for i in range(numRows):
             final = final + "".join(dat[i])
         return final
-        
+
+                
