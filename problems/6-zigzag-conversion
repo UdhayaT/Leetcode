@@ -1,0 +1,41 @@
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        
+        # stepVal = 0
+        # i = 0
+        # conv_str = ""
+        # while i < numRows:
+        #     stepVal = 0
+        #     while stepVal < len(s):
+        #         if stepVal == 0:
+        #             conv_str = conv_str + s[stepVal + i]
+        #         else:
+        #             if i > 0 and i != numRows - 1 and stepVal - i >= 0:
+        #                 conv_str = conv_str + s[stepVal - i]
+        #             if stepVal + i < len(s):
+        #                 conv_str = conv_str + s[stepVal + i]
+        #             stepVal = stepVal + (numRows - 1) * 2
+        # i = i + 1
+
+
+        dat = list()
+
+        for i in range(numRows):
+            dat.append(list())
+        i = 0
+        ch = 0
+        stepVal = 0
+        while ch < len(s):
+            i = i + stepVal
+            dat[i].append(s[ch])
+            ch = ch + 1
+
+            if i == numRows - 1:
+                stepVal = -1
+            if i == 0:
+                stepVal = 1
+        final = ""
+        for i in range(numRows):
+            final = final + "".join(dat[i])
+        return final
+        
