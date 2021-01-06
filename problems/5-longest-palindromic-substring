@@ -1,0 +1,26 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        maxlen = 1
+        palin_str = s[0]
+
+        for i in range(len(s)):
+            palin_len = 1
+            distance = 1
+            while i - distance >= 0 and i + distance < len(s) and s[i - distance] == s[i + distance]:
+                palin_len = palin_len + 2
+                distance = distance + 1
+            if maxlen < palin_len:
+                maxlen = palin_len
+                palin_str = s[i - distance + 1:i + distance]
+
+            palin_len = 0
+            distance = 0
+            while i - distance >= 0 and i + distance + 1 < len(s) and s[i - distance] == s[i + distance + 1]:
+                palin_len = palin_len + 2
+                distance = distance + 1
+            if maxlen < palin_len:
+                maxlen = palin_len
+                palin_str = s[i - distance+1:i + distance + 1] # i - (distance - 1) to i + distance (+1) for end str
+                # print("inside palin=" + str(palin_str))
+
+        return (palin_str)
