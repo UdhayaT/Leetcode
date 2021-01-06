@@ -1,2 +1,2 @@
 # Leetcode
-Programming solutions for Leetcode problems
+Programming solutions using Python3 for Leetcode problems
