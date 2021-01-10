@@ -1,0 +1,18 @@
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0:
+            return False
+        if x <= 9:
+            return True
+        rem = modulo = x
+        reversed_input = 0
+        while rem > 0:
+            modulo = rem % 10
+            reversed_input = reversed_input * 10 + modulo
+            rem = rem//10
+
+        return x == reversed_input
+
+
+if __name__ == "__main__":
+    print(Solution().isPalindrome(22))
