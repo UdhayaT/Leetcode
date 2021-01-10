@@ -1,0 +1,36 @@
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        # Using DFA method
+        state = 0
+        for ch in s:
+            if ch == ' ' and state == 0:
+                state = 0
+            elif state == 0 and (ch == '+' or ch == '-'):
+                state = 1
+                foundNeg = True if ch == '-' else False
+                retVal = (retVal + ch) if foundNeg else retVal
+            elif ch.isdigit() and state <= 2:
+                state = 2
+                retVal += ch
+            else:
+                break
+
+        if state == 2:
+            if int(retVal) > (1 << 31) - 1:
+                return 2147483647
+            elif int(retVal) < -(1 << 31):
+                return -2147483648
+            if foundNeg:
+                retVal = retVal
+        else:
+            return 0
+        return retVal
+
+
+if __name__ == "__main__":
+    print(Solution().myAtoi("   3.14"))
+    print(Solution().myAtoi("  words 34"))
+    print(Solution().myAtoi("   34 word"))
+    print(Solution().myAtoi("  -91283472332"))
+    print(Solution().myAtoi("-3.1456"))
+    print(Solution().myAtoi("+356"))
